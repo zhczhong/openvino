@@ -39,11 +39,31 @@ target_include_directories(${TARGET_NAME} PUBLIC
     $<BUILD_INTERFACE:${OpenVINO_SOURCE_DIR}/src/frontends/common/include>
     $<BUILD_INTERFACE:${OpenVINO_SOURCE_DIR}/src/inference/include>)
 
+find_package(MLIR REQUIRED CONFIG)
+
+set(MLIR_OPENVINO_LIBS
+        MLIRAnalysis
+        MLIRExecutionEngine
+        MLIRIR
+        MLIRJitRunner
+        MLIRLLVMDialect
+        MLIRLLVMToLLVMIRTranslation
+        MLIRToLLVMIRTranslationRegistration
+        MLIRParser
+        MLIRTargetLLVMIRExport
+        MLIRSupport
+        MLIROptLib
+        LLVMX86AsmParser
+        MLIRFuncDialect
+        MLIRFuncAllExtensions
+        MLIRUBToLLVM)
+
 target_link_libraries(${TARGET_NAME} PRIVATE openvino::reference
                                              openvino::shape_inference
                                              openvino::pugixml
                                              ${CMAKE_DL_LIBS}
-                                             Threads::Threads)
+                                             Threads::Threads
+                                             ${MLIR_OPENVINO_LIBS})
 
 if (TBBBIND_2_5_FOUND)
     target_link_libraries(${TARGET_NAME} PRIVATE ${TBBBIND_2_5_IMPORTED_TARGETS})
