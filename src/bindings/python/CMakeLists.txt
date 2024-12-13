@@ -217,7 +217,6 @@ macro(ov_define_setup_py_packaging_vars)
         set(TBB_LIBS_DIR runtime/3rdparty/tbb/bin)
     endif()
     set(PUGIXML_LIBS_DIR runtime/3rdparty/pugixml/lib)
-    set(GC_LIBS_DIR lib)
 
     if(USE_BUILD_TYPE_SUBFOLDER)
         set(build_type ${CMAKE_BUILD_TYPE})
@@ -242,7 +241,6 @@ macro(ov_define_setup_py_packaging_vars)
         # variables to reflect cpack locations
         OV_RUNTIME_LIBS_DIR=${OV_CPACK_RUNTIMEDIR}
         TBB_LIBS_DIR=${TBB_LIBS_DIR}
-        GC_LIBS_DIR=${GC_LIBS_DIR}
         PUGIXML_LIBS_DIR=${PUGIXML_LIBS_DIR}
         PY_PACKAGES_DIR=${PY_PACKAGES_DIR})
 endmacro()
